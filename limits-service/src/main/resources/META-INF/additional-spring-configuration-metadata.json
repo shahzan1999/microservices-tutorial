@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "limits-service.minimum",
+    "type": "java.lang.String",
+    "description": "A description for 'limits-service.minimum'"
+  },
+  {
+    "name": "limits-service.maximum",
+    "type": "java.lang.String",
+    "description": "A description for 'limits-service.maximum'"
+  },
+  {
+    "name": "spring.cloud.config.import-check.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.cloud.config.import-check.enabled'"
+  },
+  {
+    "name": "spring.cloud.config.server.git.default-label",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.cloud.config.server.git.default-label'"
+  }
+]}
