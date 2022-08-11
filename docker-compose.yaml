@@ -1,0 +1,57 @@
+version: '3.7'
+
+services:
+  naming-server:
+    image: shahzan1999/msv1-naming-server:0.0.1-SNAPSHOT
+    ports:
+      - "8761:8761"
+    networks:
+      - currency-network
+    environment:
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+    
+  limits-service:
+    image: shahzan1999/msv1-limits-service:0.0.1-SNAPSHOT
+    ports:
+      - "8080:8080"
+    networks:
+      - currency-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/      
+
+  currency-conversion:
+    image: shahzan1999/msv1-currency-conversion:0.0.1-SNAPSHOT
+    ports:
+      - "8100:8100"
+    networks:
+      - currency-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+
+  api-gateway:
+    image: shahzan1999/msv1-api-gateway:0.0.1-SNAPSHOT
+    ports:
+      - "8765:8765"
+    networks:
+      - currency-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+
+  zipkin-server:
+    image: openzipkin/zipkin:2.23
+    ports:
+      - "9411:9411"
+    networks:
+      - currency-network
+
+networks:
+  currency-network:      
