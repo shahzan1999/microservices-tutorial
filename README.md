@@ -1,6 +1,6 @@
 # microservices-tutorial
 
-This project is based on the Microservices in Spring Boot and Spring Cloud tutorial on udemy bu in28Minutes. 
+This project is based on the Microservices in Spring Boot and Spring Cloud tutorial on udemy by in28Minutes. 
 
 Through this project one learns to implement different components/concepts in microservices like 
         api-gateway using spring cloud dependency,
